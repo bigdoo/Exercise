@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using WebApplication2.Models;
 
 namespace WebApplication2.Controllers
 {
@@ -30,6 +31,18 @@ namespace WebApplication2.Controllers
             return File(Server.MapPath("~/Content/alphago-logo.png"), "image/png");
 
             //return File(Server.MapPath("~/Content/alphago-logo.png"), "image/png","bigdoo.png");
+        }
+
+        public ActionResult JsonTest()
+        {
+            var db =  new FabricsEntities1();
+            db.Configuration.LazyLoadingEnabled = false;
+
+            var data = db.Product.Take(3);
+
+            return Json(data,JsonRequestBehavior.AllowGet);
+
+
         }
     }
 }
