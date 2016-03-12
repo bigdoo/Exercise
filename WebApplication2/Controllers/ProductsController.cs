@@ -22,16 +22,21 @@ namespace WebApplication2.Controllers
             return View(repo.All().Take(5));
         }
         [HttpPost]
-        public ActionResult Index(IList<Product> data)
+        public ActionResult Index(IList<ProductPatchModel> data)
         {
-            foreach (var item in data)
+            if (ModelState.IsValid)
             {
-              var product = repo.Find(item.ProductId);
-                product.Price = item.Price;
-                product.Stock = item.Stock;
+                foreach (var item in data)
+                {
+                    var product = repo.Find(item.ProductId);
+                    product.Price = item.Price;
+                    product.Stock = item.Stock;
+                }
+                repo.UnitOfWork.Commit();
+                return RedirectToAction("Index");
             }
-            repo.UnitOfWork.Commit();
-            return RedirectToAction("Index");
+            return View(repo.All().Take(5));
+
         }
 
         // GET: Products/Details/5
