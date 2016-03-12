@@ -97,13 +97,17 @@ namespace WebApplication2.Controllers
         // 詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductId,ProductName,Price,Active,Stock")] Product product)
+        public ActionResult Edit(int id,FormCollection formdata )
         {
-            if (ModelState.IsValid)
+            //[Bind(Include = "ProductId,ProductName,Price,Active,Stock")] Product produc
+            var product = repo.Find(id);
+            if(TryUpdateModel<Product>(product, new String[] {
+                "ProductId","ProductName","Price","Active,Stock" }))
             {
-                var db = (FabricsEntities1)repo.UnitOfWork.Context;
-                db.Entry(product).State = EntityState.Modified;
-                db.SaveChanges();
+                // var db = (FabricsEntities1)repo.UnitOfWork.Context;
+                // db.Entry(product).State = EntityState.Modified;
+                // db.SaveChanges();
+                repo.UnitOfWork.Commit();
                 TempData["EditSucess"]="編輯商品資料成功";
                 return RedirectToAction("Index");
             }
