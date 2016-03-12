@@ -12,12 +12,14 @@ namespace WebApplication2.Controllers
 {
     public class ProductsController : Controller
     {
-        private FabricsEntities1 db = new FabricsEntities1();
-
+        //private FabricsEntities1 db = new FabricsEntities1();
+        ProductRepository repo = RepositoryHelper.GetProductRepository();
         // GET: Products
         public ActionResult Index()
         {
-            return View(db.Product.ToList());
+            var repoL = RepositoryHelper.GetProductRepository(repo.UnitOfWork);
+           // var data = repo.Get超級複雜的資料集();
+            return View(repo.All());
         }
 
         // GET: Products/Details/5
@@ -27,7 +29,7 @@ namespace WebApplication2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Product.Find(id);
+            Product product = repo.Find(id.Value);
             if (product == null)
             {
                 return HttpNotFound();
@@ -50,8 +52,8 @@ namespace WebApplication2.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Product.Add(product);
-                db.SaveChanges();
+                repo.Add(product);
+                repo.UnitOfWork.Commit();
                 return RedirectToAction("Index");
             }
 
@@ -65,7 +67,7 @@ namespace WebApplication2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Product.Find(id);
+            Product product = repo.Find(id.Value);
             if (product == null)
             {
                 return HttpNotFound();
@@ -82,6 +84,7 @@ namespace WebApplication2.Controllers
         {
             if (ModelState.IsValid)
             {
+                var db = (FabricsEntities1)repo.UnitOfWork.Context;
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -96,7 +99,7 @@ namespace WebApplication2.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Product.Find(id);
+            Product product = repo.Find(id.Value);
             if (product == null)
             {
                 return HttpNotFound();
@@ -109,9 +112,10 @@ namespace WebApplication2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Product product = db.Product.Find(id);
-            db.Product.Remove(product);
-            db.SaveChanges();
+            Product product = repo.Find(id);
+            //db.Product.Remove(product);
+            product.IsDeleted = true;
+            repo.UnitOfWork.Commit();
             return RedirectToAction("Index");
         }
 
@@ -119,6 +123,7 @@ namespace WebApplication2.Controllers
         {
             if (disposing)
             {
+                var db = (FabricsEntities1)repo.UnitOfWork.Context;
                 db.Dispose();
             }
             base.Dispose(disposing);
