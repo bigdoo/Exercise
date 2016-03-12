@@ -10,10 +10,10 @@ using WebApplication2.Models;
 
 namespace WebApplication2.Controllers
 {
-    public class ProductsController : Controller
+    public class ProductsController : BaseController
     {
         //private FabricsEntities1 db = new FabricsEntities1();
-        ProductRepository repo = RepositoryHelper.GetProductRepository();
+        //ProductRepository repo = RepositoryHelper.GetProductRepository();
         // GET: Products
         public ActionResult Index()
         {
