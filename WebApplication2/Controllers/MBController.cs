@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebApplication2.Models;
 
 namespace WebApplication2.Controllers
 {
@@ -14,21 +15,11 @@ namespace WebApplication2.Controllers
             return View();
         }
          [HttpPost]
-         public ActionResult Index(String Name,DateTime Birthday)
+         public ActionResult Index(MemberViewModel data)
          {
-             return Content(Name + "" + Birthday);
+             return Content(data.Name + "" + data.Birthday);
          }
 
-        /* [HttpPost]
-         public ActionResult Index(FormCollection form)
-         {
-             return Content(form["Name"] + "" + form["Birthday"]);
-         }*/
 
-         /*[HttpPost]//不建議舊寫法
-         public ActionResult Index(int a)
-         {
-            return Content(Request.Form["Name"] + " " + Request.Form["Birthday"]);
-        }*/
     }
 }

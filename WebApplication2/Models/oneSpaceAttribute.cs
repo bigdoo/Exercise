@@ -13,7 +13,7 @@ namespace WebApplication2.Models
         {
             var str = (string)value;
 
-            return str.Contains(" ");
+            return true;
         }
 
     }

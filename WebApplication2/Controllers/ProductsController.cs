@@ -19,7 +19,19 @@ namespace WebApplication2.Controllers
         {
             var repoL = RepositoryHelper.GetProductRepository(repo.UnitOfWork);
            // var data = repo.Get超級複雜的資料集();
-            return View(repo.All());
+            return View(repo.All().Take(5));
+        }
+        [HttpPost]
+        public ActionResult Index(IList<Product> data)
+        {
+            foreach (var item in data)
+            {
+              var product = repo.Find(item.ProductId);
+                product.Price = item.Price;
+                product.Stock = item.Stock;
+            }
+            repo.UnitOfWork.Commit();
+            return RedirectToAction("Index");
         }
 
         // GET: Products/Details/5
