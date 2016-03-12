@@ -87,6 +87,7 @@ namespace WebApplication2.Controllers
                 var db = (FabricsEntities1)repo.UnitOfWork.Context;
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["EditSucess"]="編輯商品資料成功";
                 return RedirectToAction("Index");
             }
             return View(product);
