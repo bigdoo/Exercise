@@ -101,8 +101,7 @@ namespace WebApplication2.Controllers
         {
             //[Bind(Include = "ProductId,ProductName,Price,Active,Stock")] Product produc
             var product = repo.Find(id);
-            if(TryUpdateModel<Product>(product, new String[] {
-                "ProductId","ProductName","Price","Active,Stock" }))
+            if(TryUpdateModel<IProduct>(product))
             {
                 // var db = (FabricsEntities1)repo.UnitOfWork.Context;
                 // db.Entry(product).State = EntityState.Modified;
