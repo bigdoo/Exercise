@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Web.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,7 +33,7 @@ namespace WebApplication2.Controllers
 
             //return File(Server.MapPath("~/Content/alphago-logo.png"), "image/png","bigdoo.png");
         }
-
+        [AjaxOnly]
         public ActionResult JsonTest()
         {
             var db =  new FabricsEntities1();
