@@ -425,6 +425,7 @@
     <Content Include="Views\AR\Index.cshtml" />
     <Content Include="Views\MB\Index.cshtml" />
     <Content Include="Views\Member\Login.cshtml" />
+    <Content Include="Views\Home\ErrorArgument.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
