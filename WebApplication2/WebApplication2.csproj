@@ -211,6 +211,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\EFController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LayoutController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MBController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
@@ -326,13 +327,22 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="calendar.html" />
+    <Content Include="chart.html" />
     <Content Include="Content\alphago-logo.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
+    <Content Include="file-manager.html" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="form.html" />
+    <Content Include="gallery.html" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="icon.html" />
+    <Content Include="index.html" />
+    <Content Include="login.html" />
+    <Content Include="messages.html" />
     <Content Include="Models\dbModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>dbModel.edmx</DependentUpon>
@@ -358,6 +368,14 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="submenu.html" />
+    <Content Include="submenu2.html" />
+    <Content Include="submenu3.html" />
+    <Content Include="table.html" />
+    <Content Include="tasks.html" />
+    <Content Include="typography.html" />
+    <Content Include="ui.html" />
+    <Content Include="widgets.html" />
     <EntityDeploy Include="Models\dbModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>dbModel.Designer.cs</LastGenOutput>
@@ -365,6 +383,7 @@
     <Content Include="Models\dbModel.edmx.diagram">
       <DependentUpon>dbModel.edmx</DependentUpon>
     </Content>
+    <Content Include="README.md" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -427,9 +446,16 @@
     <Content Include="Views\Member\Login.cshtml" />
     <Content Include="Views\Home\ErrorArgument.cshtml" />
     <Content Include="Views\Home\Razortest.cshtml" />
+    <Content Include="Views\Layout\Index.cshtml" />
+    <Content Include="Views\Layout\_ViewStart.cshtml" />
+    <Content Include="Views\Layout\_LayoutBootstrap.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="css\" />
+    <Folder Include="font\" />
+    <Folder Include="img\" />
+    <Folder Include="js\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
