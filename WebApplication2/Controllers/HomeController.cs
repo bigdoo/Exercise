@@ -20,6 +20,7 @@ namespace WebApplication2.Controllers
         }
         [共用ViewBagMessage]
         [紀錄Action的執行時間Attribute]
+ 
         public ActionResult Contact()
         {
             return View();
