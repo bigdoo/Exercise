@@ -45,5 +45,12 @@ namespace WebApplication2.Controllers
             }
             return Content("No Error");
         }
+
+        public ActionResult Razortest()
+        {
+            int[] data = new int[] { 1, 2, 3, 4, 5 };
+
+            return PartialView(data);
+        }
     }
 }

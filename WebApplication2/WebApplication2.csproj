@@ -426,6 +426,7 @@
     <Content Include="Views\MB\Index.cshtml" />
     <Content Include="Views\Member\Login.cshtml" />
     <Content Include="Views\Home\ErrorArgument.cshtml" />
+    <Content Include="Views\Home\Razortest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

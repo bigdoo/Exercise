@@ -1,0 +1,23 @@
+﻿@model int[]
+
+@foreach (var i in Model) {
+    @i
+}
+@{
+    <text></text>
+    }
+@foreach (var j in Model)
+{
+    @j@Html.Raw(" ")
+    @*@(i+" ")*@
+}
+@{
+    <text></text>
+ }
+<ul>
+    @foreach (var k in Model)
+    {
+     <li>@k</li>
+    }
+</ul>
+
