@@ -3,5 +3,15 @@
 }
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
-
+<a href="@Url.Action("Index")" class="btn btn-primary" data-name="Will"></a>
 <p>Use this area to provide additional information.</p>
+
+@Html.ActionLink(" ","Index",null,new {@class= "btn btn-primary", data_name = "Will" })
+
+@section scripts {
+
+    <script>
+        console.log('ok');
+    </script>
+
+}
