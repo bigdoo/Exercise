@@ -12,18 +12,16 @@ namespace WebApplication2.Controllers
         {
             return View();
         }
-
+        [共用ViewBagMessage]
+        [紀錄Action的執行時間Attribute]
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
-
+        [共用ViewBagMessage]
+        [紀錄Action的執行時間Attribute]
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
         public ActionResult Test()
