@@ -15,10 +15,16 @@ namespace WebApplication2.Controllers
         //private FabricsEntities1 db = new FabricsEntities1();
         //ProductRepository repo = RepositoryHelper.GetProductRepository();
         // GET: Products
-        public ActionResult Index()
+        public ActionResult Index(int? ProductId, string type)
         {
             var repoL = RepositoryHelper.GetProductRepository(repo.UnitOfWork);
-           // var data = repo.Get超級複雜的資料集();
+            // var data = repo.Get超級複雜的資料集();
+            ViewBag.type = type;
+            if (ProductId.HasValue)
+           {
+           ViewBag.SelectedProductId = ProductId.Value;
+                
+           }
             return View(repo.All().Take(5));
         }
         [HttpPost]
@@ -139,6 +145,7 @@ namespace WebApplication2.Controllers
             repo.UnitOfWork.Commit();
             return RedirectToAction("Index");
         }
+
 
         protected override void Dispose(bool disposing)
         {

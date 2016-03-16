@@ -7,7 +7,7 @@ using WebApplication2.Models;
 
 namespace WebApplication2.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public abstract class BaseController : Controller
     {
         protected override void HandleUnknownAction(string actionName)

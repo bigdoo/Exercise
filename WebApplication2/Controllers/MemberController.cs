@@ -20,7 +20,8 @@ namespace WebApplication2.Controllers
         [HttpPost]
         [AllowAnonymous]
         public ActionResult Login(LoginViewModel login)
-        {
+        {//User.Identity.IsAuthenticated
+           
             if (checkedLogin(login.Email,login.Password))
             {
                 FormsAuthentication.RedirectFromLoginPage(login.Email, false);

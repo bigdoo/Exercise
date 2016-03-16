@@ -13,7 +13,7 @@ namespace WebApplication2.Controllers
     public class OrderLinesController : Controller
     {
         private FabricsEntities1 db = new FabricsEntities1();
-        [ChildActionOnly]
+        //[ChildActionOnly]
         // GET: OrderLines
         public ActionResult Index(int ProductId)
         {
