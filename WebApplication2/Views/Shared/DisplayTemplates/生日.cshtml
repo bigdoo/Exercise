@@ -4,7 +4,7 @@
     if (Model.HasValue)
     {
 
-        var a =Model.Value.ToString("yyyy-MM-dd");
+        @Html.Raw(Model.Value.ToString("yyyy-MM-dd"));
     }
 }
 
