@@ -334,6 +334,7 @@
     <Content Include="Content\alphago-logo.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Loading_icon.gif" />
     <Content Include="Content\star.png" />
     <Content Include="favicon.ico" />
     <Content Include="file-manager.html" />
