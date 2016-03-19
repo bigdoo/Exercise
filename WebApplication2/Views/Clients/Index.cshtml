@@ -1,5 +1,9 @@
 ﻿@model IEnumerable<WebApplication2.Models.Client>
-
+@using PagedList;
+@using PagedList.Mvc;
+@{ 
+    var data =Model as IPagedList;
+}}
 @{
     if (IsAjax)
     {
@@ -33,6 +37,8 @@
     @Ajax.ActionLink("Create New", "Create", CommonAjaxOptions)
     <img  id="loading" src="~/Content/Loading_icon.gif" style="display: none" />
 </p>
+
+@Html.PagedListPager(data,p => Url.Action("Index",new { pageNo = p}))
 <table class="table">
     <tr>
         <th>
