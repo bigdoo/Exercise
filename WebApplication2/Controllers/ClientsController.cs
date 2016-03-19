@@ -88,7 +88,9 @@ namespace WebApplication2.Controllers
             {
                 db.Entry(client).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+
+                return View("Index",db.Client.Include(c => c.Occupation).Take(5).ToList());
+                //return RedirectToAction("Index");
             }
             ViewBag.OccupationId = new SelectList(db.Occupation, "OccupationId", "OccupationName", client.OccupationId);
             return View(client);
