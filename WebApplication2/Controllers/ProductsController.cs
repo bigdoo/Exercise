@@ -15,7 +15,7 @@ namespace WebApplication2.Controllers
         //private FabricsEntities1 db = new FabricsEntities1();
         //ProductRepository repo = RepositoryHelper.GetProductRepository();
         // GET: Products
-        public ActionResult Index(int? ProductId, string type, bool? isActive)
+        public ActionResult Index(int? ProductId, string type, bool? isActive, string keyword)
         {
             var repoL = RepositoryHelper.GetProductRepository(repo.UnitOfWork);
             // var data = repo.Get超級複雜的資料集();
@@ -25,7 +25,10 @@ namespace WebApplication2.Controllers
             {
                 data = data.Where(p => p.Active.HasValue && p.Active.Value == isActive.Value);
             }
-
+            if (!String.IsNullOrEmpty(keyword))
+            {
+                data = data.Where(p => p.ProductName.Contains(keyword));
+            }
             var items = new List<SelectListItem>();
             items.Add(new SelectListItem() { Value = "true", Text = "有效" });
             items.Add(new SelectListItem() { Value = "false", Text = "無效" });
