@@ -20,6 +20,8 @@ namespace WebApplication2.Controllers
         {
             var client = db.Client.Include(c => c.Occupation).OrderBy(p => p.ClientId);
             var data = client.ToPagedList(pageNo, 10);
+            ViewBag.pageNo = pageNo;
+
             return View(data);
         }
 
@@ -64,7 +66,7 @@ namespace WebApplication2.Controllers
         }
 
         // GET: Clients/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, int pageNo = 1)
         {
             if (id == null)
             {
@@ -75,6 +77,7 @@ namespace WebApplication2.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.pageNo = pageNo;
             ViewBag.OccupationId = new SelectList(db.Occupation, "OccupationId", "OccupationName", client.OccupationId);
             return View(client);
         }
@@ -84,15 +87,17 @@ namespace WebApplication2.Controllers
         // 詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ClientId,FirstName,MiddleName,LastName,Gender,DateOfBirth,CreditRating,XCode,OccupationId,TelephoneNumber,Street1,Street2,City,ZipCode,Longitude,Latitude,Notes")] Client client)
+        public ActionResult Edit([Bind(Include = "ClientId,FirstName,MiddleName,LastName,Gender,DateOfBirth,CreditRating,XCode,OccupationId,TelephoneNumber,Street1,Street2,City,ZipCode,Longitude,Latitude,Notes")] Client client, int pageNo = 1)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(client).State = EntityState.Modified;
                 db.SaveChanges();
 
-                return View("Index",db.Client.Include(c => c.Occupation).Take(5).ToList());
-                //return RedirectToAction("Index");
+                //return View("Index",db.Client.Include(c => c.Occupation).Take(5).ToList());
+                TempData["message"] = "更新資料成功\r\n您剛才更新的是編號 " + client.ClientId + " 的資料";
+                
+                return RedirectToAction("Index" ,new { pageNo = pageNo });
             }
             ViewBag.OccupationId = new SelectList(db.Occupation, "OccupationId", "OccupationName", client.OccupationId);
             return View(client);
