@@ -18,6 +18,8 @@ namespace WebApplication2.Controllers
         public ActionResult Index(int? ProductId, string type, bool? isActive, string keyword)
         {
             var repoL = RepositoryHelper.GetProductRepository(repo.UnitOfWork);
+            
+
             // var data = repo.Get超級複雜的資料集();
             //var data = repo.All(true);
             var data = repo.All().Take(5);
