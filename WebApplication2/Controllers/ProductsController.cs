@@ -15,17 +15,32 @@ namespace WebApplication2.Controllers
         //private FabricsEntities1 db = new FabricsEntities1();
         //ProductRepository repo = RepositoryHelper.GetProductRepository();
         // GET: Products
-        public ActionResult Index(int? ProductId, string type)
+        public ActionResult Index(int? ProductId, string type, bool? isActive)
         {
             var repoL = RepositoryHelper.GetProductRepository(repo.UnitOfWork);
             // var data = repo.Get超級複雜的資料集();
+            //var data = repo.All(true);
+            var data = repo.All().Take(5);
+            if (isActive.HasValue)
+            {
+                data = data.Where(p => p.Active.HasValue && p.Active.Value == isActive.Value);
+            }
+
+            var items = new List<SelectListItem>();
+            items.Add(new SelectListItem() { Value = "true", Text = "有效" });
+            items.Add(new SelectListItem() { Value = "false", Text = "無效" });
+            ViewData["isActive"] = new SelectList(items, "Value", "Text");
+
+            //var repoOL = RepositoryHelper.GetOrderLineRepository(repo.UnitOfWork);
+
             ViewBag.type = type;
             if (ProductId.HasValue)
            {
-           ViewBag.SelectedProductId = ProductId.Value;
+             ViewBag.SelectedProductId = ProductId.Value;
                 
            }
-            return View(repo.All().Take(5));
+            //return View(repo.All().Take(5));
+            return View(data);
         }
         [HttpPost]
         public ActionResult Index(IList<ProductPatchModel> data)
