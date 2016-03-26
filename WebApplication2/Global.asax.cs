@@ -20,7 +20,7 @@ namespace WebApplication2
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             ViewEngines.Engines.Clear();
             ViewEngines.Engines.Add(new RazorViewEngine());
-
+            GlobalConfiguration.Configuration.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
         }
     }
 }
